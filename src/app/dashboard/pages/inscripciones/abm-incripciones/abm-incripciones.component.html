@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>ABM Inscripciones</h1>
+<div mat-dialog-content>
+  <form class="grid formgrid" [formGroup]="inscripcionForm">
+    <!-- CONTROL DE NOMBRE -->
+
+    <div class="col-12 field">
+      <mat-form-field class="w-full">
+        <mat-label>Nombre alumno</mat-label>
+        <input
+          [formControl]="nombreAlumnoControl"
+          type="text"
+          matInput
+        >
+        <!-- <mat-error *ngFor="let error of nombreAlumnoControl.errors | keyvalue">{{ error | controlErrorMessages }}</mat-error> -->
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 field">
+        <mat-form-field class="w-full">
+          <mat-label>Nombre Curso</mat-label>
+          <input
+            [formControl]="nombreCursoControl"
+            type="text"
+            matInput
+          >
+          <!-- <mat-error *ngFor="let error of nombreCursoControl.errors | keyvalue">{{ error | controlErrorMessages }}</mat-error> -->
+        </mat-form-field>
+      </div>
+
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button (click)="guardar()" mat-button>Guardar</button>
+</div>

@@ -1,0 +1,16 @@
+<p>{{ curso?.nombre }}</p>
+
+<h1>
+    <ng-container>
+      Detalle de: <b>{{ curso?.nombre }}</b>
+    </ng-container>
+  </h1>
+  <mat-list>
+    <mat-list-item *ngFor="let alumno of curso?.alumnos; let i=index">
+        
+      <span>{{ alumno.alumno_nombre }}</span>
+      <button mat-icon-button color="warn" (click)="eliminarAlumno(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
