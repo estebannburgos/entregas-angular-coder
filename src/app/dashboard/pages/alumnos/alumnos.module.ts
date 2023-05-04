@@ -12,7 +12,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlumnoDetalleComponent } from './pages/alumno-detalle/alumno-detalle.component';
 import { MatListModule } from '@angular/material/list';
-
+import { AlumnosRoutingModule } from './alumnos-routing.module';
+import { RouterModule } from '@angular/router';
+import { AdminGuard } from 'src/app/auth/guards/admin.guard';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,19 @@ import { MatListModule } from '@angular/material/list';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatListModule
+    MatListModule,
+  //  AlumnosRoutingModule,
+    RouterModule.forChild([
+      {
+      //  path: 'hola-mundo',
+        path: '',
+        component: AlumnosComponent,
+      },
+      {
+        path: ':id',
+        component: AlumnoDetalleComponent,
+      }
+    ])
   ],
   exports: [
     AlumnosComponent

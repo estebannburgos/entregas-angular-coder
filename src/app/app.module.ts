@@ -15,7 +15,7 @@ import { CursosModule } from './dashboard/pages/cursos/cursos.module';
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
-    DashboardModule,
+  //  DashboardModule,
     AppRoutingModule,
   ],
   providers: [],

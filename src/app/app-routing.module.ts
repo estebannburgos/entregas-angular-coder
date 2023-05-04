@@ -9,12 +9,15 @@ import { CursosComponent } from './dashboard/pages/cursos/cursos.component';
 import { CursoDetalleComponent } from './dashboard/pages/cursos/pages/curso-detalle/curso-detalle.component';
 import { InscripcionesComponent } from './dashboard/pages/inscripciones/inscripciones.component';
 import { InscripcionDetalleComponent } from './dashboard/pages/inscripciones/pages/inscripcion-detalle/inscripcion-detalle.component';
+import { AuthGuard } from './auth/guards/auth.guard';
+import { LoginGuard } from './auth/guards/login.guard';
 
 const routes: Routes = [
   // DASHBOARD
   {
     // http://localhost:XXXX/dashboard
     path: 'dashboard',
+    canActivate: [AuthGuard],
     component: DashboardComponent,
     loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule)
   },
@@ -22,6 +25,7 @@ const routes: Routes = [
   // AUTH
   {
     path: 'auth',
+    canActivate: [LoginGuard],
     component: AuthComponent,
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },

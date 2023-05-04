@@ -16,6 +16,7 @@ import { CursosComponent } from './pages/cursos/cursos.component';
 import { CursoDetalleComponent } from './pages/cursos/pages/curso-detalle/curso-detalle.component';
 import { InscripcionesComponent } from './pages/inscripciones/inscripciones.component';
 import { InscripcionDetalleComponent } from './pages/inscripciones/pages/inscripcion-detalle/inscripcion-detalle.component';
+import { AdminGuard } from '../auth/guards/admin.guard';
 
 @NgModule({
   declarations: [
@@ -36,18 +37,19 @@ import { InscripcionDetalleComponent } from './pages/inscripciones/pages/inscrip
       {
         // http://localhost:XXXX/dashboard/estudiantes
         path: 'estudiantes',
-        children: [
-          {
-            // dashboard/estudiantes
-            path: '',
-            component: AlumnosComponent,
-          },
-          {
-            // dashboard/estudiantes/:id
-            path: ':id',
-            component: AlumnoDetalleComponent
-          }
-        ]
+        loadChildren: () => import('./pages/alumnos/alumnos.module').then((m) => m.AlumnosModule)
+        // children: [
+        //   {
+        //     // dashboard/estudiantes
+        //     path: '',
+        //     component: AlumnosComponent,
+        //   },
+        //   {
+        //     // dashboard/estudiantes/:id
+        //     path: ':id',
+        //     component: AlumnoDetalleComponent
+        //   }
+        // ]
       },
       {
         path: 'cursos',
