@@ -16,75 +16,14 @@ const routes: Routes = [
     // http://localhost:XXXX/dashboard
     path: 'dashboard',
     component: DashboardComponent,
-    children: [
-      {
-        // http://localhost:XXXX/dashboard/estudiantes
-        path: 'estudiantes',
-        children: [
-          {
-            // dashboard/estudiantes
-            path: '',
-            component: AlumnosComponent,
-          },
-          {
-            // dashboard/estudiantes/:id
-            path: ':id',
-            component: AlumnoDetalleComponent
-          }
-        ]
-      },
-      // {
-      //   path: 'estudiantes/:id',
-      //   component: AlumnoDetalleComponent,
-      // },
-      {
-        path: 'cursos',
-        children: [
-          {
-            // dashboard/cursos
-            path: '',
-            component: CursosComponent,
-          },
-          {
-            // dashboard/cursos/:id
-            path: ':id',
-            component: CursoDetalleComponent
-          }
-        ]
-      },
-      {
-        path: 'inscripciones',
-        children: [
-          {
-            // dashboard/inscripciones
-            path: '',
-            component: InscripcionesComponent,
-          },
-          {
-            // dashboard/inscripcion/:id
-            path: ':id',
-            component: InscripcionDetalleComponent
-          }
-        ]
-      }
-      // {
-      // http://localhost:XXXX/dashboard/comisiones
-      //   path: 'comisiones',
-      //   component: AlumnosComponent,
-      // },
-    ]
+    loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule)
   },
 
   // AUTH
   {
     path: 'auth',
     component: AuthComponent,
-    children: [
-      {
-        path: 'login',
-        component: LoginComponent
-      },
-    ]
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
 
   // RUTAS INDEFINIDAS....
