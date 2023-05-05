@@ -14,6 +14,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
 import { MatListModule } from '@angular/material/list';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -34,7 +35,18 @@ import { MatListModule } from '@angular/material/list';
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatListModule
+    MatListModule,
+    RouterModule.forChild([
+      {
+        // /dashboard/cursos
+        path: '',
+        component: CursosComponent
+      },
+      {
+        path: ':id',
+        component: CursoDetalleComponent,
+      }
+    ])
   ]
 })
 export class CursosModule { }

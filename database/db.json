@@ -24,19 +24,43 @@
       "id": 1,
       "nombre": "Angular",
       "fecha_fin": "2023-04-27T01:27:59.631Z",
-      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+      "fecha_inicio": "2023-04-27T01:27:59.631Z",
+      "alumnos": [{
+        "alumno_id": 1,
+        "alumno_nombre": "Pedro Arias"
+      },
+      {
+        "alumno_id": 2,
+        "alumno_nombre": "Juan Pérez"
+      },
+      {
+        "alumno_id": 3,
+        "alumno_nombre": "Diego Astorga"
+      }]
     },
     {
       "id": 2,
       "nombre": "Javascript",
       "fecha_fin": "2023-04-27T01:27:59.631Z",
-      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+      "fecha_inicio": "2023-04-27T01:27:59.631Z",
+      "alumnos": [{
+        "alumno_id": 1,
+        "alumno_nombre": "Pedro Arias"
+      },
+      {
+        "alumno_id": 4,
+        "alumno_nombre": "María Ramírez"
+      }]
     },
     {
       "id": 3,
       "nombre": "Desarrollo Web",
       "fecha_fin": "2023-04-27T01:27:59.631Z",
-      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+      "fecha_inicio": "2023-04-27T01:27:59.631Z",
+      "alumnos": [{
+        "alumno_id": 4,
+        "alumno_nombre": "María Ramírez"
+      }]
     }
   ]
 }

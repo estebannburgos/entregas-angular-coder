@@ -30,9 +30,9 @@ import { AdminGuard } from '../auth/guards/admin.guard';
     MatIconModule,
     MatButtonModule,
     MatListModule,
-    AlumnosModule,
-    CursosModule,
-    InscripcionesModule,
+    // AlumnosModule,
+    // CursosModule,
+    // InscripcionesModule,
     RouterModule.forChild([
       {
         // http://localhost:XXXX/dashboard/estudiantes
@@ -53,33 +53,36 @@ import { AdminGuard } from '../auth/guards/admin.guard';
       },
       {
         path: 'cursos',
-        children: [
-          {
-            // dashboard/cursos
-            path: '',
-            component: CursosComponent,
-          },
-          {
-            // dashboard/cursos/:id
-            path: ':id',
-            component: CursoDetalleComponent
-          }
-        ]
+        loadChildren: () => import('./pages/cursos/cursos.module').then((m) => m.CursosModule),
+
+        // children: [
+        //   {
+        //     // dashboard/cursos
+        //     path: '',
+        //     component: CursosComponent,
+        //   },
+        //   {
+        //     // dashboard/cursos/:id
+        //     path: ':id',
+        //     component: CursoDetalleComponent
+        //   }
+        //  ]
       },
       {
         path: 'inscripciones',
-        children: [
-          {
-            // dashboard/inscripciones
-            path: '',
-            component: InscripcionesComponent,
-          },
-          {
-            // dashboard/inscripcion/:id
-            path: ':id',
-            component: InscripcionDetalleComponent
-          }
-        ]
+        loadChildren: () => import('./pages/inscripciones/inscripciones.module').then((m) => m.InscripcionesModule),
+        // children: [
+        //   {
+        //     // dashboard/inscripciones
+        //     path: '',
+        //     component: InscripcionesComponent,
+        //   },
+        //   {
+        //     // dashboard/inscripcion/:id
+        //     path: ':id',
+        //     component: InscripcionDetalleComponent
+        //   }
+        // ]
       }
     ])
   ],

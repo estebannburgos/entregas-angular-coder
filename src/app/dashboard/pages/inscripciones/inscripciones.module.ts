@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -29,7 +30,18 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatTableModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    RouterModule.forChild([
+      {
+        // /dashboard/cursos
+        path: '',
+        component: InscripcionesComponent
+      },
+      {
+        path: ':id',
+        component: InscripcionDetalleComponent,
+      }
+    ])
   ]
 })
 export class InscripcionesModule { }
