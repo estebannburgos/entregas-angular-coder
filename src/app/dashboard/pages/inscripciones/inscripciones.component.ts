@@ -5,6 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbmIncripcionesComponent } from './abm-incripciones/abm-incripciones.component';
 import { Inscripcion } from './models';
+import { Usuario } from 'src/app/core/models';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-inscripciones',
@@ -13,7 +16,7 @@ import { Inscripcion } from './models';
 })
 export class InscripcionesComponent implements OnInit {
   dataSource = new MatTableDataSource();
-
+  authUser$: Observable<Usuario | null>;
   displayedColumns = [
     'id',
     'nombre_alumno',
@@ -28,7 +31,10 @@ export class InscripcionesComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-  ) {}
+    private authService: AuthService,
+  ) {
+    this.authUser$ = this.authService.obtenerUsuarioAutenticado();
+  }
 
   ngOnInit(): void {
     this.inscripcionesService.obtenerInscripciones().subscribe({

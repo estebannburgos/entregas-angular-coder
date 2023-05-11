@@ -2,7 +2,9 @@ import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlumnosService } from '../../services/alumnos.service';
 import { Alumno } from '../../alumnos.component';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { Usuario } from 'src/app/core/models';
 
 @Component({
   selector: 'app-alumno-detalle',
@@ -12,12 +14,15 @@ import { Subject, takeUntil } from 'rxjs';
 export class AlumnoDetalleComponent implements OnDestroy {
 
   alumno: Alumno | undefined;
+  authUser$: Observable<Usuario | null>;
   private destroyed$ = new Subject()
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private alumnosService: AlumnosService,
+    private authService: AuthService,
   ) {
+    this.authUser$ = this.authService.obtenerUsuarioAutenticado();
     this.alumnosService.obtenerAlumnoPorId(parseInt(this.activatedRoute.snapshot.params['id']))
       .pipe(takeUntil(this.destroyed$))
       .subscribe((alumno) => this.alumno = alumno);

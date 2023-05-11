@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AbmCursosComponent } from './components/abm-cursos/abm-cursos.component';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { Usuario } from 'src/app/core/models';
 
 @Component({
   selector: 'app-cursos',
@@ -14,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CursosComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource();
-
+  authUser$: Observable<Usuario | null>;
   displayedColumns = [
     'id',
     'nombre',
@@ -32,7 +34,10 @@ export class CursosComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-  ) {}
+    private authService: AuthService,
+  ) {
+    this.authUser$ = this.authService.obtenerUsuarioAutenticado();
+  }
 
   ngOnDestroy(): void {
     this.cursosSuscription?.unsubscribe();

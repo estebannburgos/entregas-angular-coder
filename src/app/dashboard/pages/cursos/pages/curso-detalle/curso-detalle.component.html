@@ -9,8 +9,12 @@
     <mat-list-item *ngFor="let alumno of curso?.alumnos; let i=index">
         
       <span>{{ alumno.alumno_nombre }}</span>
-      <button mat-icon-button color="warn" (click)="eliminarAlumno(i)">
-        <mat-icon>delete</mat-icon>
-      </button>
+      <div *ngIf="(authUser$ | async)?.role === 'admin'; else noAdmin">
+        <button mat-icon-button color="warn" (click)="eliminarAlumno(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <ng-template #noAdmin>
+      </ng-template>
     </mat-list-item>
   </mat-list>
