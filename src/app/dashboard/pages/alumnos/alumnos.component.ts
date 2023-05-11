@@ -4,6 +4,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlumnosService } from './services/alumnos.service';
+import { Usuario } from 'src/app/core/models';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 export interface Alumno {
   id: number;
@@ -26,6 +29,9 @@ export class AlumnosComponent {
 
   dataSource = new MatTableDataSource<Alumno>();
 
+  
+  authUser$: Observable<Usuario | null>;
+
   displayedColumns: string[] = ['id', 'nombreCompleto', 'fecha_registro', 'ver_detalle', 'eliminar', 'editar'];
 
   aplicarFiltros(ev: Event): void {
@@ -38,11 +44,15 @@ export class AlumnosComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private alumnosService: AlumnosService,
+    private authService: AuthService,
   ) {
     this.alumnosService.obtenerAlumnos()
       .subscribe((alumnos) => {
         this.dataSource.data = alumnos;
       })
+
+    this.authUser$ = this.authService.obtenerUsuarioAutenticado()
+    
   }
 
   irAlDetalle(alumnoId: number): void {

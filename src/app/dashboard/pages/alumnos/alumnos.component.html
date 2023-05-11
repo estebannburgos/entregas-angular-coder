@@ -46,22 +46,22 @@
 
   <!-- Eliminar Column -->
   <ng-container matColumnDef="eliminar">
-    <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-    <td mat-cell *matCellDef="let alumno">
-      <button mat-icon-button (click)="eliminarAlumno(alumno)" >
-        <mat-icon>close</mat-icon>
-      </button>
-    </td>
+      <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+      <td mat-cell *matCellDef="let alumno">
+        <button mat-icon-button (click)="eliminarAlumno(alumno)" >
+          <mat-icon>close</mat-icon>
+        </button>
+      </td>
   </ng-container>
 
   <!-- Editar Column -->
   <ng-container matColumnDef="editar">
-    <th mat-header-cell *matHeaderCellDef>Editar</th>
-    <td mat-cell *matCellDef="let alumno">
-      <button mat-icon-button (click)="editarAlumno(alumno)" >
-        <mat-icon>edit</mat-icon>
-      </button>
-    </td>
+      <th mat-header-cell *matHeaderCellDef>Editar</th>
+      <td mat-cell *matCellDef="let alumno">
+        <button mat-icon-button (click)="editarAlumno(alumno)" >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

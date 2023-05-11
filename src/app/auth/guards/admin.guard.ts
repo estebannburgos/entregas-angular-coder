@@ -20,6 +20,7 @@ export class AdminGuard implements CanActivate {
             alert('No tienes permiso')
             return false;
           } else {
+            console.log(usuarioAutenticado?.role);
             return true;
           }
         })
