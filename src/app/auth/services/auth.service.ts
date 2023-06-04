@@ -4,6 +4,10 @@ import { Observable, BehaviorSubject, map, catchError, throwError, of } from 'rx
 import { Usuario } from 'src/app/core/models';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { enviroment } from 'src/environments/environments';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store';
+import { selectAuthUser } from 'src/app/store/auth/auth.selectors';
+import { EstablecerUsuarioAutenticado, QuitarUsuarioAutenticado } from 'src/app/store/auth/auth.actions';
 
 export interface LoginFormValue {
   email: string;
@@ -15,19 +19,22 @@ export interface LoginFormValue {
 })
 export class AuthService {
 
-  private authUser$ = new BehaviorSubject<Usuario | null>(null);
+//  private authUser$ = new BehaviorSubject<Usuario | null>(null);
 
   constructor(
     private router: Router,
     private httpClient: HttpClient,
+    private store: Store<AppState>
   ) { }
 
   obtenerUsuarioAutenticado(): Observable<Usuario | null> {
-    return this.authUser$.asObservable();
+  //  return this.authUser$.asObservable();
+    return this.store.select(selectAuthUser);
   }
 
-  private establecerUsuarioAutenticado(usuario: Usuario): void {
-    this.authUser$.next(usuario);
+  private establecerUsuarioAutenticado(usuario: Usuario, token: string): void {
+  //  this.authUser$.next(usuario);
+    this.store.dispatch(EstablecerUsuarioAutenticado({ payload: {...usuario, token }}));
   }
 
   login(formValue: LoginFormValue): void {
@@ -54,7 +61,8 @@ export class AuthService {
         if (usuarioAutenticado) {
           localStorage.setItem('token', usuarioAutenticado.token)
         //  this.authUser$.next(usuarioAutenticado);
-        this.establecerUsuarioAutenticado(usuarioAutenticado);
+        //  this.establecerUsuarioAutenticado(usuarioAutenticado);
+          this.establecerUsuarioAutenticado(usuarioAutenticado, usuarioAutenticado.token);
           this.router.navigate(['dashboard']);
         } else {
           alert('¡Usuario y contraseña incorrectos!')
@@ -65,17 +73,18 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('auth-user');
-    this.authUser$.next(null);
+    // this.authUser$.next(null);
+    this.store.dispatch(QuitarUsuarioAutenticado());
     this.router.navigate(['auth']);
   }
 
-  verificarStorage(): void {
-    const storageValor = localStorage.getItem('auth-user');
-    if (storageValor) {
-      const usuario = JSON.parse(storageValor);
-      this.authUser$.next(usuario);
-    }
-  }
+  // verificarStorage(): void {
+  //   const storageValor = localStorage.getItem('auth-user');
+  //   if (storageValor) {
+  //     const usuario = JSON.parse(storageValor);
+  //     this.authUser$.next(usuario);
+  //   }
+  // }
 
   verificarToken(): Observable<boolean> {
     const token = localStorage.getItem('token');
@@ -92,7 +101,8 @@ export class AuthService {
           const usuarioAutenticado = usuarios[0];
           if (usuarioAutenticado) {
             localStorage.setItem('token', usuarioAutenticado.token)
-            this.authUser$.next(usuarioAutenticado);
+            // this.authUser$.next(usuarioAutenticado);
+            this.establecerUsuarioAutenticado(usuarioAutenticado, usuarioAutenticado.token);
           }
           return !!usuarioAutenticado;
         }),
