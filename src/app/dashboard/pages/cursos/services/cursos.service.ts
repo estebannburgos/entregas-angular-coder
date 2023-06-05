@@ -8,6 +8,7 @@ import { enviroment } from 'src/environments/environments';
 const CURSOS_MOCKS: Curso[] = [
   {
     id: 1,
+    nombre: 'Angular',
     subjectId: 3,
     fecha_fin: new Date(),
     fecha_inicio: new Date(),
@@ -26,6 +27,7 @@ const CURSOS_MOCKS: Curso[] = [
   },
   {
     id: 2,
+    nombre: 'Desarrollo Web',
     subjectId: 3,
     fecha_fin: new Date(),
     fecha_inicio: new Date(),
@@ -40,6 +42,7 @@ const CURSOS_MOCKS: Curso[] = [
   },
   {
     id: 3,
+    nombre: 'Javascript',
     subjectId: 3,
     fecha_fin: new Date(),
     fecha_inicio: new Date(),
@@ -67,15 +70,15 @@ export class CursosService {
   }
 
   obtenerCursos(): Observable<Curso[]> {
-    // this.cursos$.next(CURSOS_MOCKS);
-    // return this.cursos$.asObservable();
-    return this.httpClient
-    //  .get<Curso[]>(`${enviroment.apiBaseUrl}/cursos`)
-      .get<Curso[]>(`${enviroment.apiBaseUrl}/cursos?_expand=subject`)
-      .pipe(
-        tap((cursos) => this.cursos$.next(cursos)),
-        mergeMap(() => this.cursos$.asObservable())
-      );
+     this.cursos$.next(CURSOS_MOCKS);
+     return this.cursos$.asObservable();
+    // return this.httpClient
+    // //  .get<Curso[]>(`${enviroment.apiBaseUrl}/cursos`)
+    //   .get<Curso[]>(`${enviroment.apiBaseUrl}/cursos?_expand=subject`)
+    //   .pipe(
+    //     tap((cursos) => this.cursos$.next(cursos)),
+    //     mergeMap(() => this.cursos$.asObservable())
+    //   );
   }
 
   obtenerCursosWithSubject(): Observable<CursoWithSubject[]> {
