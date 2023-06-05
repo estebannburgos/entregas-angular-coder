@@ -8,7 +8,7 @@ import { enviroment } from 'src/environments/environments';
 const CURSOS_MOCKS: Curso[] = [
   {
     id: 1,
-    nombre: 'Angular',
+    subjectId: 3,
     fecha_fin: new Date(),
     fecha_inicio: new Date(),
     alumnos: [{
@@ -26,7 +26,7 @@ const CURSOS_MOCKS: Curso[] = [
   },
   {
     id: 2,
-    nombre: 'Javascript',
+    subjectId: 3,
     fecha_fin: new Date(),
     fecha_inicio: new Date(),
     alumnos: [{
@@ -40,7 +40,7 @@ const CURSOS_MOCKS: Curso[] = [
   },
   {
     id: 3,
-    nombre: 'Desarrollo Web',
+    subjectId: 3,
     fecha_fin: new Date(),
     fecha_inicio: new Date(),
     alumnos: [{

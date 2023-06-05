@@ -22,45 +22,64 @@
   "cursos": [
     {
       "id": 1,
-      "nombre": "Angular",
+      "subjectId": 1,
       "fecha_fin": "2023-04-27T01:27:59.631Z",
-      "fecha_inicio": "2023-04-27T01:27:59.631Z",
-      "alumnos": [{
-        "alumno_id": 1,
-        "alumno_nombre": "Pedro Arias"
-      },
-      {
-        "alumno_id": 2,
-        "alumno_nombre": "Juan Pérez"
-      },
-      {
-        "alumno_id": 3,
-        "alumno_nombre": "Diego Astorga"
-      }]
+      "fecha_inicio": "2023-04-27T01:27:59.631Z"
     },
     {
       "id": 2,
-      "nombre": "Javascript",
+      "subjectId": 2,
       "fecha_fin": "2023-04-27T01:27:59.631Z",
-      "fecha_inicio": "2023-04-27T01:27:59.631Z",
-      "alumnos": [{
-        "alumno_id": 1,
-        "alumno_nombre": "Pedro Arias"
-      },
-      {
-        "alumno_id": 4,
-        "alumno_nombre": "María Ramírez"
-      }]
+      "fecha_inicio": "2023-04-27T01:27:59.631Z"
     },
     {
       "id": 3,
-      "nombre": "Desarrollo Web",
+      "subjectId": 2,
       "fecha_fin": "2023-04-27T01:27:59.631Z",
-      "fecha_inicio": "2023-04-27T01:27:59.631Z",
-      "alumnos": [{
-        "alumno_id": 4,
-        "alumno_nombre": "María Ramírez"
-      }]
+      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+    }
+  ],
+  "subjects": [
+    {
+      "id": 1,
+      "nombre": "Angular",
+      "description": "Curso de Angular con duración de 2 meses."
+    },
+    {
+      "id": 2,
+      "nombre": "Desarrollo Web"
+    },
+    {
+      "id": 3,
+      "nombre": "Desarrollo Javascript"
+    }
+  ],
+  "inscriptions": [
+    {
+      "id": 1,
+      "subjectId": 2,
+      "studentId": 3,
+      "courseId": 1
+    },
+    {
+      "id": 2,
+      "subjectId": 2,
+      "studentId": 1,
+      "courseId": 2
+    }
+  ],
+  "students": [
+    {
+      "id": 3,
+      "nombre": "Juan",
+      "apellido": "Pérez",
+      "fecha_registro": "2023-04-27T01:27:59.631Z"
+    },
+    {
+      "id": 1,
+      "nombre": "María",
+      "apellido": "Ramírez",
+      "fecha_registro": "2023-04-27T01:27:59.631Z"
     }
   ]
 }

@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { InscripcionesService } from './services/inscripciones.service';
-import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AbmIncripcionesComponent } from './abm-incripciones/abm-incripciones.component';
-import { Inscripcion } from './models';
-import { Usuario } from 'src/app/core/models';
+import { Store } from '@ngrx/store';
+import { InscripcionesActions } from './store/inscripciones.actions';
+import { State } from './store/inscripciones.reducer';
+import { selectInscripcionesState } from './store/inscripciones.selectors';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-inscripciones',
@@ -15,74 +12,19 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   styleUrls: ['./inscripciones.component.scss']
 })
 export class InscripcionesComponent implements OnInit {
-  dataSource = new MatTableDataSource();
-  authUser$: Observable<Usuario | null>;
-  displayedColumns = [
-    'id',
-    'nombre_alumno',
-    'nombre_curso', 
-    'detalle', 
-    'eliminar', 
-    'editar' 
-  ];
+  state$: Observable<State>;
 
   constructor(
     private inscripcionesService: InscripcionesService,
-    private dialog: MatDialog,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private authService: AuthService,
+    private store: Store,
   ) {
-    this.authUser$ = this.authService.obtenerUsuarioAutenticado();
+    this.state$ = this.store.select(selectInscripcionesState);
   }
-
   ngOnInit(): void {
-    this.inscripcionesService.obtenerInscripciones().subscribe({
-      next: (inscripciones) => {
-        this.dataSource.data = inscripciones;
-      },
-    });
+    this.store.dispatch(InscripcionesActions.loadInscripciones());
   }
 
-  irAlDetalle(InscripcionId: number): void {
-    this.router.navigate([InscripcionId], {
-      relativeTo: this.activatedRoute,
-    });
+  eliminarInscripcionPorId(id: number): void {
+    this.store.dispatch(InscripcionesActions.deleteInscripcion({ id }))
   }
-
-  crearInscripcion(): void {
-    const dialog = this.dialog.open(AbmIncripcionesComponent);
-    dialog.afterClosed()
-      .subscribe((formValue) => {
-        if (formValue) {
-          this.inscripcionesService.crearInscripcion(formValue)
-        }
-      });
-  }
-
-  editarInscripcion(inscripcion: Inscripcion): void {
-    const dialog = this.dialog.open(AbmIncripcionesComponent, {
-      data: {
-        inscripcion,
-      }
-    })
-  
-    dialog.afterClosed().subscribe((formValue) => {
-      if (formValue) {
-         this.inscripcionesService.editarInscripcion(inscripcion.id, formValue);
-      }
-    })
-  }
-  
-
-  eliminarInscripcion(inscripcion: Inscripcion): void {
-    if (confirm('¿Está seguro de eliminar este inscripción? Una vez hecho esto no podrá volver atrás.')) {
-      this.inscripcionesService.eliminarInscripcion(inscripcion.id);
-    }
-  }
-
-  aplicarFiltros(ev: Event): void {}
-
-  // irAlDetalle(cursoId: number): void {}
-
 }

@@ -12,6 +12,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
+import { InscripcionesRoutingModule } from './inscripciones-routing.module';
+import { EffectsModule } from '@ngrx/effects';
+import { InscripcionesEffects } from './store/inscripciones.effects';
+import { StoreModule } from '@ngrx/store';
+import { inscripcionesFeature } from './store/inscripciones.reducer';
 
 
 
@@ -23,6 +28,7 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
+    InscripcionesRoutingModule,
     PipesModule,
     ReactiveFormsModule,
     MatIconModule,
@@ -41,7 +47,9 @@ import { RouterModule } from '@angular/router';
         path: ':id',
         component: InscripcionDetalleComponent,
       }
-    ])
+    ]),
+    StoreModule.forFeature(inscripcionesFeature),
+    EffectsModule.forFeature([InscripcionesEffects])
   ]
 })
 export class InscripcionesModule { }

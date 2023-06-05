@@ -9,23 +9,24 @@ import { InscripcionesService } from '../../services/inscripciones.service';
   templateUrl: './inscripcion-detalle.component.html',
   styleUrls: ['./inscripcion-detalle.component.scss']
 })
-export class InscripcionDetalleComponent implements OnDestroy {
+export class InscripcionDetalleComponent {
+// export class InscripcionDetalleComponent implements OnDestroy {
 
-  private destroyed$ = new Subject();
-  inscripcion: Inscripcion | undefined;
+  // private destroyed$ = new Subject();
+  // inscripcion: Inscripcion | undefined;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private inscripcionesService: InscripcionesService,
-  ) {
-    this.inscripcionesService.getInscripcionById(parseInt(this.activatedRoute.snapshot.params['id']))
-    .pipe(takeUntil(this.destroyed$))
-    .subscribe((inscripcion) => this.inscripcion = inscripcion);
-  }
+  // constructor(
+  //   private activatedRoute: ActivatedRoute,
+  //   private inscripcionesService: InscripcionesService,
+  // ) {
+  //   this.inscripcionesService.getInscripcionById(parseInt(this.activatedRoute.snapshot.params['id']))
+  //   .pipe(takeUntil(this.destroyed$))
+  //   .subscribe((inscripcion) => this.inscripcion = inscripcion);
+  // }
 
-  ngOnDestroy(): void {
-    this.destroyed$.next(true);
-  }
+  // ngOnDestroy(): void {
+  //   this.destroyed$.next(true);
+  // }
 
 
 }
