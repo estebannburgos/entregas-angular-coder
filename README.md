@@ -1,3 +1,11 @@
+- Para loguear con un usuario de rol Admin.
+	>user: esteban.n.burgos@gmail.com
+    >pass: 123
+
+- Para loguear con un usuario de rol User.
+	>user: juan@email.com
+    >pass: 123456
+
 # 3PFBurgos
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.2.

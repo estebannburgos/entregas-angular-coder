@@ -12,7 +12,7 @@ export class AdminGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      console.log('here');
+    //  console.log('here');
     return this.authService.obtenerUsuarioAutenticado()
       .pipe(
         map((usuarioAutenticado) => {

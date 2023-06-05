@@ -67,7 +67,33 @@ export const reducer = createReducer<State>(
       loading: false,
       error: action.error,
     };
-  })
+  }),
+
+  on(InscripcionesActions.createInscripcion, (state) => {
+    return {
+      ...state,
+      loading: true,
+    }
+  }),
+
+
+  on(InscripcionesActions.createInscripcionSuccess, (state, action) => {
+    const newInscripcion = action.data;
+    return {
+      ...state,
+      loading: false,
+      inscripciones: [...state.inscripciones, newInscripcion]
+    }
+  }),
+
+  on(InscripcionesActions.createInscripcionFailure, (state, action) => {
+    return {
+      ...state,
+      loading: false,
+      error: action.error,
+    }
+  }),  
+
 );
 
 export const inscripcionesFeature = createFeature({

@@ -65,7 +65,7 @@ export class CursosComponent implements OnInit, OnDestroy {
       .subscribe((formValue) => {
         if (formValue) {
           this.cursosService.crearCurso(formValue)
-          console.log(formValue);
+        //  console.log(formValue);
         }
       });
   }

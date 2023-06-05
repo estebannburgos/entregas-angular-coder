@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { InscripcionesRoutingModule } from './inscripciones-routing.module';
 import { EffectsModule } from '@ngrx/effects';
@@ -34,6 +35,7 @@ import { inscripcionesFeature } from './store/inscripciones.reducer';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatTableModule,
     MatButtonModule,
     MatDialogModule,

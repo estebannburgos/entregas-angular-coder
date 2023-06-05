@@ -2,13 +2,23 @@
 
 <ng-template #ifNotLoading>
   <!-- <pre>{{ (state$ | async)?.inscripciones | json }}</pre> -->
-
+  <button (click)="crearInscripcion()" type="button" mat-button >Crear inscripcion</button>
   <ul>
     <li *ngFor="let inscripcion of (state$ | async)?.inscripciones">
       {{ inscripcion.student.nombre + ' - ' + inscripcion.subject.nombre }}
-      <button (click)="eliminarInscripcionPorId(inscripcion.id)" mat-icon-button color="warn" type="button">
-        <mat-icon>delete</mat-icon>
-      </button>
+
+      <!-- Eliminar Column -->
+    <ng-container matColumnDef="eliminar">
+
+      <div *ngIf="(authUser$ | async)?.role === 'admin'; else noAdminEliminar">
+        <button (click)="eliminarInscripcionPorId(inscripcion.id)" mat-icon-button color="warn" type="button">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <ng-template #noAdminEliminar>
+         
+      </ng-template>
+    </ng-container>
     </li>
   </ul>
 </ng-template>

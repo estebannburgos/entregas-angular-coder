@@ -1,36 +1,31 @@
-<h1 mat-dialog-title>ABM Inscripciones</h1>
+<h3 mat-dialog-title>CREAR INSCRIPCION</h3>
 <div mat-dialog-content>
-  <form class="grid formgrid" [formGroup]="inscripcionForm">
-    <!-- CONTROL DE NOMBRE -->
-
-    <div class="col-12 field">
-      <mat-form-field class="w-full">
-        <mat-label>Nombre alumno</mat-label>
-        <input
-          [formControl]="nombreAlumnoControl"
-          type="text"
-          matInput
-        >
-        <!-- <mat-error *ngFor="let error of nombreAlumnoControl.errors | keyvalue">{{ error | controlErrorMessages }}</mat-error> -->
+  <form [formGroup]="incripcionForm">
+    <div>
+      <mat-form-field>
+        <!-- <input matInput /> -->
+        <mat-label>Estudiante</mat-label>
+        <mat-select [formControl]="studentIdControl">
+          <mat-option [value]="alumno.id"  *ngFor="let alumno of alumnos">
+            {{ alumno.nombre }} {{ alumno.apellido }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
-
-    <div class="col-12 field">
-        <mat-form-field class="w-full">
-          <mat-label>Nombre Curso</mat-label>
-          <input
-            [formControl]="nombreCursoControl"
-            type="text"
-            matInput
-          >
-          <!-- <mat-error *ngFor="let error of nombreCursoControl.errors | keyvalue">{{ error | controlErrorMessages }}</mat-error> -->
-        </mat-form-field>
-      </div>
-
+    <div>
+      <mat-form-field>
+        <!-- <input matInput /> -->
+        <mat-label>Curso</mat-label>
+        <mat-select [formControl]="selectedCourseControl">
+          <mat-option [value]="curso"  *ngFor="let curso of cursos">
+            {{ curso.id }} - {{ curso.subject.nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </form>
 </div>
-
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancelar</button>
-  <button (click)="guardar()" mat-button>Guardar</button>
+  <button mat-dialog-close mat-button type="button">Cancelar</button>
+  <button (click)="onSave()" mat-button type="button">Guardar</button>
 </div>

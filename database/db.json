@@ -34,7 +34,7 @@
     },
     {
       "id": 3,
-      "subjectId": 2,
+      "subjectId": 3,
       "fecha_fin": "2023-04-27T01:27:59.631Z",
       "fecha_inicio": "2023-04-27T01:27:59.631Z"
     }
@@ -51,7 +51,7 @@
     },
     {
       "id": 3,
-      "nombre": "Desarrollo Javascript"
+      "nombre": "Javascript"
     }
   ],
   "inscriptions": [
@@ -66,6 +66,12 @@
       "subjectId": 2,
       "studentId": 1,
       "courseId": 2
+    },
+    {
+      "subjectId": 1,
+      "studentId": 4,
+      "courseId": 1,
+      "id": 3
     }
   ],
   "students": [
@@ -79,6 +85,18 @@
       "id": 1,
       "nombre": "María",
       "apellido": "Ramírez",
+      "fecha_registro": "2023-04-27T01:27:59.631Z"
+    },
+    {
+      "id": 4,
+      "nombre": "Mario",
+      "apellido": "Zepeda",
+      "fecha_registro": "2023-04-27T01:27:59.631Z"
+    },
+    {
+      "id": 5,
+      "nombre": "Luisa",
+      "apellido": "González",
       "fecha_registro": "2023-04-27T01:27:59.631Z"
     }
   ]

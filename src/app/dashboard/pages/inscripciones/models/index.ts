@@ -20,6 +20,12 @@ export interface InscripcionWithCourse extends Inscripcion {
   curso: Curso;
 }
 
+export interface CreateInscripcionData {
+  studentId: number;
+  courseId: number;
+  subjectId: number;
+}
+
 export type InscripcionWithAll = InscripcionWithStudent & InscripcionWithSubject & InscripcionWithCourse;
   
   // export interface CrearInscripcionPayload {
